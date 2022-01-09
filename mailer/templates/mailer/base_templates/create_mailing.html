@@ -1,0 +1,26 @@
+{% extends 'mailer/base.html' %}
+
+{% block title %}
+    Создание рассылки | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<h1 class="display-1 mt-5">Создание рассылки для пользователей</h1>
+
+<form class="" action="{% url 'create_mailing' %}" method="post">
+    {% csrf_token %}
+
+    {% for field in form %}
+        <div class="form-group">
+            {% if field.errors %}
+                <div class="alert alert-danger">
+                    {{ field.errors }}
+                </div>
+            {% endif %}
+            {{ field.label }}
+            {{ field }}
+        </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary mt-3" style="float:right">Отправить рассылку</button>
+</form>
+{% endblock %}

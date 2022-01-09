@@ -1,0 +1,16 @@
+version: "3.7"
+
+services:
+  redis:
+    image: redis
+    restart: always
+    ports:
+      - "6379:6379"
+
+  db:
+    image: postgres:12.8
+    restart: always
+    env_file:
+      - ./.env
+    ports:
+      - "3654:5432"
